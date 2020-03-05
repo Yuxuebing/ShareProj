@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.yxb.share.portal.dao.SysRoleDao">
+
+    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select sys_guid() from dual
+        </selectKey>
+        INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
+    </insert>
+
+    <!--根据用户名查询用户角色集合-->
+    <select id="getRolesByUserName" parameterType="string" resultType="string">
+        SELECT
+          r.NAME
+        FROM
+          SYS_ROLE r,
+          SYS_USER_ROLE ur,
+          SYS_USER u
+        WHERE
+          u.USERNAME=#{username, jdbcType=VARCHAR}
+          and r.ID=ur.ROLE_ID
+          and u.ID=ur.USER_ID
+    </select>
+</mapper>

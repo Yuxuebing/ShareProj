@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.yxb.share.portal.dao.SysUserDao">
+
+    <insert id="insertUser" parameterType="pers.yxb.share.portal.entity.SysUser">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select sys_guid() from dual
+        </selectKey>
+        INSERT INTO SYS_USER(ID, USERNAME, PASSWORD) VALUES(#{id, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findUserByName" parameterType="string" resultType="pers.yxb.share.portal.entity.SysUser">
+        SELECT * FROM sys_user WHERE username = #{name}
+    </select>
+</mapper>

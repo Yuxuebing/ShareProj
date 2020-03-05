@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.yxb.share.portal.dao.SysPermissionDao">
+
+    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select sys_guid() from dual
+        </selectKey>
+        INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
+    </insert>
+
+    <!--根据用户名查询用户角色集合-->
+    <select id="findPermissionsByUsername" parameterType="string" resultType="string">
+        SELECT
+            m.ACRO||':'||b.ACRO AS perm
+        FROM
+            SYS_MENU_BUTTON mb,
+            SYS_MENU m,
+            SYS_BUTTON b,
+            SYS_PERMISSION perm
+        WHERE
+            perm.RESOURCE_ID=mb.ID
+            AND mb.MENU_ID=m.ID
+            AND mb.BTN_ID = b.ID
+            AND (
+                perm.MASTER_ID=(SELECT ID FROM SYS_USER WHERE username=#{username, jdbcType=VARCHAR})
+                OR perm.MASTER_ID = (SELECT ur.ROLE_ID FROM SYS_USER_ROLE ur,SYS_USER u1 WHERE ur.USER_ID=u1.ID and u1.USERNAME=#{username, jdbcType=VARCHAR})
+                OR perm.MASTER_ID = (SELECT uo.ORG_ID FROM SYS_USER_ORG uo,SYS_USER u2 WHERE uo.USER_ID=u2.ID and u2.USERNAME=#{username, jdbcType=VARCHAR})
+            )
+    </select>
+</mapper>
