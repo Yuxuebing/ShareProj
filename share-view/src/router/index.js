@@ -32,7 +32,6 @@ export default new Router({
         title: '主页'
       },
       children: [
-
       ]
     }
   ]
