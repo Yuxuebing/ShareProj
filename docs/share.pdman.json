@@ -1008,33 +1008,33 @@
             "shape": "table",
             "title": "SYS_PERMISSION",
             "moduleName": false,
-            "x": 590,
-            "y": 570,
+            "x": 650,
+            "y": 510,
             "id": "b205f655"
+          },
+          {
+            "shape": "table",
+            "title": "SYS_MENU_BUTTON",
+            "moduleName": false,
+            "x": 640,
+            "y": 700,
+            "id": "177cc48d"
           },
           {
             "shape": "table",
             "title": "SYS_MENU",
             "moduleName": false,
-            "x": 180,
-            "y": 940,
+            "x": 30,
+            "y": 790,
             "id": "507275c1"
           },
           {
             "shape": "table",
             "title": "SYS_BUTTON",
             "moduleName": false,
-            "x": 1010,
-            "y": 900,
+            "x": 1210,
+            "y": 690,
             "id": "68a82933"
-          },
-          {
-            "shape": "table",
-            "title": "SYS_MENU_BUTTON",
-            "moduleName": false,
-            "x": 580,
-            "y": 830,
-            "id": "177cc48d"
           }
         ],
         "edges": [
@@ -1122,12 +1122,12 @@
             "id": "dba1390f",
             "controlPoints": [
               {
-                "x": 471.9853515625,
-                "y": 842.6388888888889
+                "x": 531.9853515625,
+                "y": 712.6388888888889
               },
               {
-                "x": 347.6650390625,
-                "y": 812.1136363636364
+                "x": 197.6650390625,
+                "y": 662.1136363636364
               }
             ],
             "sourceAnchor": 2,
@@ -1141,12 +1141,107 @@
             "id": "cb6a1863",
             "controlPoints": [
               {
-                "x": 688.0146484375,
-                "y": 862.8611111111111
+                "x": 748.0146484375,
+                "y": 732.8611111111111
               },
               {
-                "x": 842.3349609375,
-                "y": 812.15
+                "x": 1042.3349609375,
+                "y": 602.15
+              }
+            ],
+            "sourceAnchor": 5,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b205f655",
+            "target": "6e9ce4db",
+            "id": "06cb3cda",
+            "controlPoints": [
+              {
+                "x": 516.3125,
+                "y": 522.6388888888889
+              },
+              {
+                "x": -10.3369140625,
+                "y": 62.12931034482759
+              }
+            ],
+            "sourceAnchor": 2,
+            "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b205f655",
+            "target": "7e9a2582",
+            "id": "e58307fd",
+            "controlPoints": [
+              {
+                "x": 783.6875,
+                "y": 522.6388888888889
+              },
+              {
+                "x": 707.6650390625,
+                "y": 62.107142857142854
+              }
+            ],
+            "sourceAnchor": 3,
+            "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b205f655",
+            "target": "ad31f222",
+            "id": "1282bd56",
+            "controlPoints": [
+              {
+                "x": 783.6875,
+                "y": 502.4166666666667
+              },
+              {
+                "x": 1042.3349609375,
+                "y": 62.17857142857143
+              }
+            ],
+            "sourceAnchor": 1,
+            "targetAnchor": 0
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b205f655",
+            "target": "507275c1",
+            "id": "75fb0552",
+            "controlPoints": [
+              {
+                "x": 516.3125,
+                "y": 542.8611111111111
+              },
+              {
+                "x": 197.6650390625,
+                "y": 662.1136363636364
+              }
+            ],
+            "sourceAnchor": 4,
+            "targetAnchor": 1
+          },
+          {
+            "shape": "erdRelation",
+            "relation": "0,n:1",
+            "source": "b205f655",
+            "target": "68a82933",
+            "id": "160489aa",
+            "controlPoints": [
+              {
+                "x": 783.6875,
+                "y": 542.8611111111111
+              },
+              {
+                "x": 1042.3349609375,
+                "y": 602.15
               }
             ],
             "sourceAnchor": 5,
@@ -1215,6 +1310,61 @@
           "from": {
             "entity": "SYS_MENU_BUTTON",
             "field": "BTN_ID"
+          },
+          "to": {
+            "entity": "SYS_BUTTON",
+            "field": "ID"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "SYS_PERMISSION",
+            "field": "MASTER_ID"
+          },
+          "to": {
+            "entity": "SYS_ORG",
+            "field": "ID"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "SYS_PERMISSION",
+            "field": "MASTER_ID"
+          },
+          "to": {
+            "entity": "SYS_USER",
+            "field": "ID"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "SYS_PERMISSION",
+            "field": "ID"
+          },
+          "to": {
+            "entity": "SYS_ROLE",
+            "field": "ID"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "SYS_PERMISSION",
+            "field": "RESOURCE_ID"
+          },
+          "to": {
+            "entity": "SYS_MENU",
+            "field": "ID"
+          }
+        },
+        {
+          "relation": "0,n:1",
+          "from": {
+            "entity": "SYS_PERMISSION",
+            "field": "RESOURCE_ID"
           },
           "to": {
             "entity": "SYS_BUTTON",

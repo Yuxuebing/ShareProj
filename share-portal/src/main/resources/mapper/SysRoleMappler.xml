@@ -3,9 +3,16 @@
 
 <mapper namespace="pers.yxb.share.portal.dao.SysRoleDao">
 
-    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole">
+    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole" databaseId="oracle">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
+        </selectKey>
+        INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole" databaseId="mysql">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid_short(),'-','') from dual
         </selectKey>
         INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
     </insert>

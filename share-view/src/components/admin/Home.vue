@@ -1,12 +1,16 @@
 <template>
   <el-container>
-    <el-header>
-      <Header></Header>
-    </el-header>
+    <el-aside class="app-side app-side-left" width="initial">
+      <Aside :collapse="collapse"></Aside>
+    </el-aside>
     <el-container>
-      <el-aside width="200px">
-        <Aside></Aside>
-      </el-aside>
+      <el-header>
+        <div style="cursor: pointer; display: inline; line-height: 60px; float: left; color: white" @click.prevent="toggleSideBar">
+          <i v-show="!collapse" class="el-icon-d-arrow-left"></i>
+          <i v-show="collapse" class="el-icon-d-arrow-right"></i>
+        </div>
+        <Header></Header>
+      </el-header>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
@@ -21,12 +25,12 @@
     data() {
       return {
         username: '管理员',
-        isCollapse: false
+        collapse: false
       }
     },
     methods: {
       toggleSideBar() {
-        this.isCollapse = !this.isCollapse
+        this.collapse = !this.collapse
       },
       logout: function () {
         this.$confirm('确认退出?', '提示', {})
@@ -49,46 +53,16 @@
       modifyPassword: function () {
 
       }
-    },
-    mounted: function () {
-      let user = sessionStorage.getItem('user')
-      if (user) {
-        this.username = user
-      }
     }
   }
 </script>
 
 <style>
-  .el-container {
-    position: absolute;
-    width: 100%;
-    top: 0px;
-    left: 0;
-    bottom: 0;
-  }
-
-  .el-header .el-menu {
-    border-bottom: none;
-  }
-
-  .el-aside, .el-main {
-    padding-top: 60px;
-  }
-
-  .el-aside, .el-header {
-    background: #545c64;
-  }
-
-  .el-aside .el-menu {
-    border-right: none;
-  }
-  .el-header {
-    padding: 0;
-    z-index: 1000;
-  }
-
-  .el-header .fr {
-    float: right;
-  }
+  .el-container {position: absolute; width: 100%; top: 0px; left: 0; bottom: 0;}
+  .el-container>.el-container{position: relative}
+  .el-header .el-menu {border-bottom: none;}
+  .el-aside, .el-header {background: #545c64;}
+  .el-aside .el-menu {border-right: none;}
+  .el-header {padding: 0; z-index: 1000;}
+  .el-header .fr {float: right; line-height: 60px;}
 </style>

@@ -7,6 +7,5 @@ import org.springframework.stereotype.Service;
  * @author: yuxb
  * @date 2020-02-18
  */
-@Service
 public interface SysOrgService {
 }

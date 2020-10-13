@@ -9,7 +9,6 @@ import java.util.Set;
  * @author: yuxb
  * @date 2020-02-17
  */
-@Service
 public interface SysRoleService {
     Set<String> getRolesByUserName(String username);
 }

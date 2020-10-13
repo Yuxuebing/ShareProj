@@ -2,6 +2,7 @@ package pers.yxb.share.portal.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pers.yxb.share.portal.dao.SysRoleDao;
 import pers.yxb.share.portal.service.SysRoleService;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  * @author: yuxb
  * @date 2020-02-17
  */
-@Component
+@Service
 public class SysRoleServiceImpl implements SysRoleService {
 
     @Autowired

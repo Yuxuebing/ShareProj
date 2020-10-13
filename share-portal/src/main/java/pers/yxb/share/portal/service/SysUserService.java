@@ -8,7 +8,6 @@ import pers.yxb.share.portal.entity.SysUser;
  * @author: yuxb
  * @date 2020-02-16
  */
-@Service
 public interface SysUserService {
     /**
      * 新增用户

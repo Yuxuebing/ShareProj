@@ -1,9 +1,6 @@
 package pers.yxb.share.portal.config;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -49,6 +46,9 @@ public class ShiroConfig {
         protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
             String username = (String)authenticationToken.getPrincipal();
             SysUser user = userService.selectUserByName(username);
+            if (user == null) {
+                throw new UnknownAccountException(); // 账号不存在
+            }
             SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo( user.getUsername(),
                     user.getPassword(), // 密码
                     ByteSource.Util.bytes(user.getSalt()),

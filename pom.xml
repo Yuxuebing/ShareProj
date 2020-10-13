@@ -17,6 +17,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <ojdbc.version>11.2.0.3</ojdbc.version>
+        <mysql.version>8.0.15</mysql.version>
         <mybatis.version>2.1.1</mybatis.version>
         <druid.version>1.1.0</druid.version>
     </properties>
@@ -30,6 +31,7 @@
     <modules>
         <module>share-base</module>
         <module>share-portal</module>
+        <module>share-admin</module>
     </modules>
 
     <dependencyManagement>
@@ -38,6 +40,11 @@
                 <groupId>oracle</groupId>
                 <artifactId>ojdbc6</artifactId>
                 <version>${ojdbc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
@@ -58,6 +65,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

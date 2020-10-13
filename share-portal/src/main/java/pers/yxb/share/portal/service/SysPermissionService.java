@@ -9,7 +9,6 @@ import java.util.Set;
  * @author: yuxb
  * @date 2020-02-17
  */
-@Service
 public interface SysPermissionService {
     Set<String> findPermissionsByUsername(String username);
 }

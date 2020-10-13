@@ -1,44 +1,44 @@
 package pers.yxb.share.portal;
 
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
+import pers.yxb.share.portal.entity.SysUser;
+import pers.yxb.share.portal.service.SysOrgService;
+import pers.yxb.share.portal.service.SysUserService;
+
+import java.text.DecimalFormat;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+
 /**
  * Unit test for simple App.
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class AppTest {
-    public static void main(String[] args) {
-        final Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Thread-" + Thread.currentThread().getName());
-            }
-        },"t1");
-        final Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    t1.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Thread-" + Thread.currentThread().getName());
-            }
-        },"t2");
-        final Thread t3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    t2.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Thread-" + Thread.currentThread().getName());
-            }
-        },"t3");
-        t3.setDaemon(true);
-        t3.start();
-        t1.start();
-        t2.start();
-        System.out.println(t3.isAlive() + " " + t2.isAlive() + " " + t1.isAlive());
 
+    @Autowired
+    private SysUserService userService;
+
+    @Test
+    public void getUsers() {
+        System.out.println("begin getUsers---");
+        SysUser sysUser= userService.selectUserByName("zhangsan");
+        System.out.println(sysUser.getUsername());
+    }
+
+    @Test
+    public void setUser() {
+        SysUser sysUser = new SysUser();
+        sysUser.setUsername("zhangsan");
+        userService.insertUser(sysUser);
     }
 }
+
 

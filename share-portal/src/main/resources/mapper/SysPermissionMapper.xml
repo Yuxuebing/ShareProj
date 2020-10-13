@@ -3,14 +3,21 @@
 
 <mapper namespace="pers.yxb.share.portal.dao.SysPermissionDao">
 
-    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission">
+    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission" databaseId="oracle">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
         </selectKey>
-        INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
+        INSERT INTO SYS_PERMISSION(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
     </insert>
 
-    <!--根据用户名查询用户角色集合-->
+    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission" databaseId="mysql">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid_short(),'-','') from dual
+        </selectKey>
+        INSERT INTO SYS_PERMISSION(ID, NAME) VALUES(#{id, jdbcType=VARCHAR})
+    </insert>
+
+    <!--根据用户名查询用户权限集合-->
     <select id="findPermissionsByUsername" parameterType="string" resultType="string">
         SELECT
             m.ACRO||':'||b.ACRO AS perm

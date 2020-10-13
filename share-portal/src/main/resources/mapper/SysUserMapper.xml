@@ -3,9 +3,15 @@
 
 <mapper namespace="pers.yxb.share.portal.dao.SysUserDao">
 
-    <insert id="insertUser" parameterType="pers.yxb.share.portal.entity.SysUser">
+    <insert id="insertUser" parameterType="pers.yxb.share.portal.entity.SysUser" databaseId="oracle">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
+        </selectKey>
+        INSERT INTO SYS_USER(ID, USERNAME, PASSWORD) VALUES(#{id, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertUser" parameterType="pers.yxb.share.portal.entity.SysUser" databaseId="mysql">
+        <selectKey keyProperty="id" resultType="string" order="BEFORE">
+            select replace(uuid_short(),'-','') from dual
         </selectKey>
         INSERT INTO SYS_USER(ID, USERNAME, PASSWORD) VALUES(#{id, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
     </insert>

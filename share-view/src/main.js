@@ -1,14 +1,21 @@
 import Vue from 'vue'
-import Index from './Index'
 import router from './router'
 // 导入ElementUI
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-
 import '@/styles/index.scss'
+import 'element-ui/lib/theme-chalk/index.css'
+import Index from './Index.vue'
 
+const axios = require('axios')
+axios.defaults.baseURL = 'http://localhost:8081/api'
+// 使请求带上凭证信息
+axios.defaults.withCredentials = true
+
+Vue.prototype.$axios = axios
+Vue.config.productionTip = false
 // 使用ElementUI
 Vue.use(ElementUI)
+
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
@@ -16,13 +23,9 @@ router.beforeEach((to, from, next) => {
   }
   next()
 })
-// 关闭生产模式下给出的提示
-Vue.config.productionTip = false
 
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { Index },
-  template: '<Index/>'
+  render: h => h(Index),
 })
