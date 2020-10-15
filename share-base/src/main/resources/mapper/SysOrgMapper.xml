@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="pers.yxb.share.portal.dao.SysOrgDao">
+<mapper namespace="pers.yxb.share.base.dao.SysOrgDao">
 
-    <insert id="insertOrg" parameterType="pers.yxb.share.portal.entity.SysOrg">
+    <insert id="insertOrg" parameterType="pers.yxb.share.base.entity.SysOrg">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
         </selectKey>

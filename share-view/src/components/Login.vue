@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-      <el-form :model="loginForm" :rules="rules" class="login-container" status-icon label-position="left" label-width="0px" v-loading="loading">
+      <el-form class="login-container" :model="loginForm" :rules="rules" status-icon label-position="left" label-width="0px" v-loading="loading">
         <h3 class="login_title">系统登录</h3>
         <el-form-item prop="username">
           <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="用户名"></el-input>
@@ -41,7 +41,7 @@
                 })
                 .then(successResponse => {
                   if (successResponse.data.code === 200) {
-                    this.$router.replace({path: '/index'})
+                    this.$router.replace({path: '/'})
                   }
                 })
           }
@@ -53,6 +53,9 @@
   #login {
     width: 100%;
     height: 100%;
+    background: url("../assets/eva.jpg") no-repeat center;
+    background-size: cover;
+    position: fixed;
   }
   .login-container {
     border-radius: 15px;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="pers.yxb.share.portal.dao.SysRoleDao">
+<mapper namespace="pers.yxb.share.base.dao.SysRoleDao">
 
-    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole" databaseId="oracle">
+    <insert id="insertRole" parameterType="pers.yxb.share.base.entity.SysRole" databaseId="oracle">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
         </selectKey>
         INSERT INTO SYS_ROLE(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertRole" parameterType="pers.yxb.share.portal.entity.SysRole" databaseId="mysql">
+    <insert id="insertRole" parameterType="pers.yxb.share.base.entity.SysRole" databaseId="mysql">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select replace(uuid_short(),'-','') from dual
         </selectKey>

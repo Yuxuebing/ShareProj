@@ -21,8 +21,8 @@ drop table if exists SYS_USER_ROLE;
 /*==============================================================*/
 create table SYS_BUTTON
 (
-   ID                   varchar(20) not null comment '主键',
-   MENU_ID              varchar(20) comment '菜单ID',
+   ID                   int unsigned auto_increment not null comment '主键',
+   MENU_ID              int comment '菜单ID',
    ICON                 varchar(50) comment '图标',
    ACRO                 varchar(100) comment '标识',
    SEQ                  int comment '序号',
@@ -42,9 +42,9 @@ alter table SYS_BUTTON comment '按钮表';
 /*==============================================================*/
 create table SYS_MENU
 (
-   ID                   varchar(20) not null comment '主键',
+   ID                   int unsigned auto_increment not null comment '主键',
    NAME                 varchar(200) comment '名称',
-   PARENT_ID            varchar(20) comment '父级ID',
+   PARENT_ID            int comment '父级ID',
    URL                  varchar(100) comment 'URL',
    ICON                 varchar(50) comment '图标',
    ACRO                 varchar(100) comment '标识',
@@ -66,9 +66,9 @@ alter table SYS_MENU comment '菜单表';
 /*==============================================================*/
 create table SYS_MENU_BUTTON
 (
-   ID                   varchar(20) not null comment '主键',
-   MENU_ID              varchar(20) comment '菜单ID',
-   BTN_ID               varchar(20) comment '按钮ID',
+   ID                   int unsigned auto_increment not null comment '主键',
+   MENU_ID              int comment '菜单ID',
+   BTN_ID               int comment '按钮ID',
    primary key (ID)
 );
 
@@ -79,7 +79,7 @@ alter table SYS_MENU_BUTTON comment '菜单-按钮表';
 /*==============================================================*/
 create table SYS_ORGANIZATION
 (
-   ID                   varchar(20) not null comment '主键',
+   ID                   int unsigned auto_increment not null comment '主键',
    NAME                 varchar(200) comment '名称',
    PARENT_ID            varchar(20) comment '父级ID',
    GRADE                int comment '层级',
@@ -101,9 +101,9 @@ alter table SYS_ORGANIZATION comment '组织机构表';
 /*==============================================================*/
 create table SYS_PRIVILEGE
 (
-   ID                   varchar(20) not null comment '主键',
-   MASTER_ID            varchar(20) comment '主体ID',
-   RESOURCE_ID          varchar(20) comment '资源ID',
+   ID                   int unsigned auto_increment not null comment '主键',
+   MASTER_ID            int comment '主体ID',
+   RESOURCE_ID          int comment '资源ID',
    STATUS               char(4) comment '状态',
    primary key (ID)
 );
@@ -115,7 +115,7 @@ alter table SYS_PRIVILEGE comment '权限表';
 /*==============================================================*/
 create table SYS_ROLE
 (
-   ID                   varchar(20) not null comment '主键',
+   ID                   int unsigned auto_increment not null comment '主键',
    NAME                 varchar(200) comment '名称',
    MEMO                 varchar(500) comment '备注',
    CREATED_USER_ID      varchar(20) comment '创建人ID',
@@ -134,7 +134,7 @@ alter table SYS_ROLE comment '角色表';
 /*==============================================================*/
 create table SYS_USER
 (
-   ID                   varchar(20) not null comment '主键',
+   ID                   int unsigned auto_increment not null comment '主键',
    USERNAME             varchar(50) comment '用户名',
    PASSWORD             varchar(50) comment '密码',
    SALT                 varchar(20) comment 'SALT',
@@ -161,9 +161,9 @@ alter table SYS_USER comment '用户表';
 /*==============================================================*/
 create table SYS_USER_ORG
 (
-   ID                   varchar(20) not null comment '主键',
-   USER_ID              varchar(20) comment '用户ID',
-   ORG_ID               varchar(20) comment '机构ID',
+   ID                   int unsigned auto_increment not null comment '主键',
+   USER_ID              int comment '用户ID',
+   ORG_ID               int comment '机构ID',
    primary key (ID)
 );
 
@@ -174,9 +174,9 @@ alter table SYS_USER_ORG comment '用户-机构表';
 /*==============================================================*/
 create table SYS_USER_ROLE
 (
-   ID                   varchar(20) not null comment '主键',
-   USER_ID              varchar(20) comment '用户ID',
-   ROLE_ID              varchar(20) comment '角色ID',
+   ID                   int unsigned auto_increment not null comment '主键',
+   USER_ID              int comment '用户ID',
+   ROLE_ID              int comment '角色ID',
    primary key (ID)
 );
 

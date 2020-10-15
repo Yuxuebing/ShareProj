@@ -1,4 +1,4 @@
-package pers.yxb.share.portal.dao;
+package pers.yxb.share.base.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,6 +10,6 @@ import java.util.Set;
  * @date 2020-02-17
  */
 @Mapper
-public interface SysPermissionDao {
-    Set<String> findPermissionsByUsername(String username);
+public interface SysRoleDao {
+    Set<String> getRolesByUserName(String username);
 }

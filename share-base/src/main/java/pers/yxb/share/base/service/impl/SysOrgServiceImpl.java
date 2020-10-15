@@ -1,4 +1,4 @@
-package pers.yxb.share.portal.service.impl;
+package pers.yxb.share.base.service.impl;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

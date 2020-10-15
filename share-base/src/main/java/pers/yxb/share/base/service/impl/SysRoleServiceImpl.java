@@ -1,10 +1,9 @@
-package pers.yxb.share.portal.service.impl;
+package pers.yxb.share.base.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import pers.yxb.share.portal.dao.SysRoleDao;
-import pers.yxb.share.portal.service.SysRoleService;
+import pers.yxb.share.base.dao.SysRoleDao;
+import pers.yxb.share.base.service.SysRoleService;
 
 import java.util.Set;
 

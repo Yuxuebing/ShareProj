@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="pers.yxb.share.portal.dao.SysPermissionDao">
+<mapper namespace="pers.yxb.share.base.dao.SysPermissionDao">
 
-    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission" databaseId="oracle">
+    <insert id="insertSysPermission" parameterType="pers.yxb.share.base.entity.SysPermission" databaseId="oracle">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select sys_guid() from dual
         </selectKey>
         INSERT INTO SYS_PERMISSION(ID, NAME) VALUES(#{id, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSysPermission" parameterType="pers.yxb.share.portal.entity.SysPermission" databaseId="mysql">
+    <insert id="insertSysPermission" parameterType="pers.yxb.share.base.entity.SysPermission" databaseId="mysql">
         <selectKey keyProperty="id" resultType="string" order="BEFORE">
             select replace(uuid_short(),'-','') from dual
         </selectKey>

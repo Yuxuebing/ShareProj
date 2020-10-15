@@ -1,8 +1,8 @@
-package pers.yxb.share.portal.dao;
+package pers.yxb.share.base.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import pers.yxb.share.portal.entity.SysUser;
+import pers.yxb.share.base.entity.SysUser;
 
 /**
  * @desc:

@@ -1,4 +1,4 @@
-package pers.yxb.share.portal.config;
+package pers.yxb.share.base.config;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -11,10 +11,10 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pers.yxb.share.portal.entity.SysUser;
-import pers.yxb.share.portal.service.SysPermissionService;
-import pers.yxb.share.portal.service.SysRoleService;
-import pers.yxb.share.portal.service.SysUserService;
+import pers.yxb.share.base.entity.SysUser;
+import pers.yxb.share.base.service.SysPermissionService;
+import pers.yxb.share.base.service.SysRoleService;
+import pers.yxb.share.base.service.SysUserService;
 
 import java.util.Set;
 
@@ -86,7 +86,7 @@ public class ShiroConfig {
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-        chainDefinition.addPathDefinition("/**", "authc");
+        //chainDefinition.addPathDefinition("/**", "authc");
         return chainDefinition;
     }
 }

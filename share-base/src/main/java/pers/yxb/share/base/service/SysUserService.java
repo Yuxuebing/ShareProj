@@ -1,7 +1,7 @@
-package pers.yxb.share.portal.service;
+package pers.yxb.share.base.service;
 
 import org.springframework.stereotype.Service;
-import pers.yxb.share.portal.entity.SysUser;
+import pers.yxb.share.base.entity.SysUser;
 
 /**
  * @desc:
