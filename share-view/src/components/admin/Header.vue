@@ -13,12 +13,15 @@
         <el-menu-item index="2-2">选项2</el-menu-item>
         <el-menu-item index="2-3">选项3</el-menu-item>
       </el-submenu>
+      <el-menu-item index="3"><Logout/></el-menu-item>
     </el-menu>
 </template>
 
 <script>
+    import Logout from "../Logout";
     export default {
-        name: 'Header'
+        name: 'Header',
+        components: {Logout}
     }
 </script>
 

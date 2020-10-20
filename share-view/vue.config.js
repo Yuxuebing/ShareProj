@@ -4,7 +4,8 @@ function resolve (dir) {
 }
 module.exports = {
     lintOnSave: true,
-    chainWebpack: (config)=>{
+    chainWebpack: config => {
+        config.resolve.symlinks(true); // 修复热更新失效
         config.resolve.alias
             .set('@', resolve('src'))
             .set('assets',resolve('src/assets'))
@@ -14,6 +15,7 @@ module.exports = {
             .set('static',resolve('src/static'))
     },
     devServer: {
+        host: '127.0.0.1',
         proxy: {
             '/api': {
                 target: 'http://localhost:8081',
@@ -23,6 +25,7 @@ module.exports = {
                     '^/api': ''
                 }
             }
-        }
+        },
+        disableHostCheck:true
     }
 }

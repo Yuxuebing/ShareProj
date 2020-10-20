@@ -2,7 +2,7 @@ import Vue from 'vue'
 import router from './router'
 // 导入ElementUI
 import ElementUI from 'element-ui'
-import '@/styles/index.scss'
+import store from './store'
 import 'element-ui/lib/theme-chalk/index.css'
 import Index from './Index.vue'
 
@@ -17,6 +17,18 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (store.state.user.username) {
+      next()
+    } else {
+      next({
+        path: 'login',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
     document.title = to.meta.title
@@ -27,5 +39,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(Index),
 })

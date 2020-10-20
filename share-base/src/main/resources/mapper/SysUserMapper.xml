@@ -10,10 +10,7 @@
         INSERT INTO SYS_USER(ID, USERNAME, PASSWORD) VALUES(#{id, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
     </insert>
     <insert id="insertUser" parameterType="pers.yxb.share.base.entity.SysUser" databaseId="mysql">
-        <selectKey keyProperty="id" resultType="string" order="BEFORE">
-            select replace(uuid_short(),'-','') from dual
-        </selectKey>
-        INSERT INTO SYS_USER(ID, USERNAME, PASSWORD) VALUES(#{id, jdbcType=VARCHAR}, #{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR})
+        INSERT INTO SYS_USER(USERNAME, PASSWORD, SALT) VALUES(#{username, jdbcType=VARCHAR}, #{password, jdbcType=VARCHAR}, #{salt, jdbcType=VARCHAR})
     </insert>
 
     <select id="findUserByName" parameterType="string" resultType="pers.yxb.share.base.entity.SysUser">

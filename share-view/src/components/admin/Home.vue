@@ -11,13 +11,15 @@
         </div>
         <Header></Header>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view/>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-  import Aside from '@/components/admin/Aside';
+  import Aside from 'components/admin/Aside';
   import Header from '@/components/admin/Header';
   export default {
     name: 'Home',

@@ -1,12 +1,24 @@
 <template>
-  <div class="portal">
-    Hello World!
-  </div>
+  <el-container>
+    <el-header>
+      <Header/>
+    </el-header>
+    <el-main>
+      <Body/>
+    </el-main>
+    <el-footer>
+      <Footer/>
+    </el-footer>
+  </el-container>
 </template>
 
 <script>
+  import Header from 'components/portal/Header'
+  import Body from 'components/portal/Body'
+  import Footer from 'components/portal/Footer'
   export default {
-    name: 'Portal'
+    name: 'Portal',
+    components: {Header, Body, Footer},
   }
 </script>
 

@@ -41,6 +41,9 @@
                 })
                 .then(successResponse => {
                   if (successResponse.data.code === 200) {
+                    this.$store.commit('login', this.loginForm)
+                    this.$router.replace({path: '/admin'})
+                  } else {
                     this.$router.replace({path: '/'})
                   }
                 })

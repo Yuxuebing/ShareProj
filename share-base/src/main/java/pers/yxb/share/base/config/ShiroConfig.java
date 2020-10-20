@@ -1,6 +1,7 @@
 package pers.yxb.share.base.config;
 
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -26,51 +27,12 @@ import java.util.Set;
 @Configuration
 public class ShiroConfig {
 
-    class MyRealm extends AuthorizingRealm {
-        @Autowired
-        private SysUserService userService;
-
-        @Autowired
-        private SysRoleService roleService;
-
-        @Autowired
-        private SysPermissionService permissionService;
-
-        /**
-         * 身份认证
-         * @param authenticationToken
-         * @return
-         * @throws AuthenticationException
-         */
-        @Override
-        protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-            String username = (String)authenticationToken.getPrincipal();
-            SysUser user = userService.selectUserByName(username);
-            if (user == null) {
-                throw new UnknownAccountException(); // 账号不存在
-            }
-            SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo( user.getUsername(),
-                    user.getPassword(), // 密码
-                    ByteSource.Util.bytes(user.getSalt()),
-                    getName());
-            return authenticationInfo;
-        }
-
-        /**
-         * 授权
-         * @param principalCollection
-         * @return
-         */
-        @Override
-        protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-            String username = (String)principalCollection.getPrimaryPrincipal();
-            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            Set<String> roles = roleService.getRolesByUserName(username);//角色集合
-            Set<String> perms = permissionService.findPermissionsByUsername(username);//权限集合
-            info.setRoles(roles);
-            info.setStringPermissions(perms);
-            return info;
-        }
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        hashedCredentialsMatcher.setHashIterations(2);
+        return hashedCredentialsMatcher;
     }
 
     /**
@@ -79,8 +41,10 @@ public class ShiroConfig {
      * @return
      */
     @Bean("authorizer")
-    public MyRealm realm() {
-        return new MyRealm();
+    public ShiroRealm realm() {
+        ShiroRealm realm = new ShiroRealm();
+        realm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return realm;
     }
 
     @Bean

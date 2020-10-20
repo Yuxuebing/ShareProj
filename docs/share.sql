@@ -137,7 +137,7 @@ create table SYS_USER
    ID                   int unsigned auto_increment not null comment '主键',
    USERNAME             varchar(50) comment '用户名',
    PASSWORD             varchar(50) comment '密码',
-   SALT                 varchar(20) comment 'SALT',
+   SALT                 varchar(32) comment 'SALT',
    REAL_NAME            varchar(50) comment '真实',
    SEX                  varchar(10) comment '性别',
    BIRTHDAY             date comment '出生日期',

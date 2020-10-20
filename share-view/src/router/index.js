@@ -5,14 +5,15 @@ import Login from '../components/Login'
 import Home from '../components/admin/Home'
 
 Vue.use(Router)
-
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Portal',
       component: Portal,
       meta: {
+        requireAuth: true,
         title: 'Welcome to Share'
       }
     },
@@ -32,6 +33,11 @@ export default new Router({
         title: '主页'
       },
       children: [
+        {
+          path: '/sysuser',
+          name: 'SysUser',
+          component: () => import('../components/admin/sysuser/Index')
+        }
       ]
     }
   ]
